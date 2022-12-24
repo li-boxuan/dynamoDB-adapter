@@ -1,6 +1,5 @@
 package io.stargate.sgv2.dynamoapi.auth;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.quarkus.security.identity.IdentityProviderManager;
 import io.quarkus.security.identity.SecurityIdentity;
 import io.quarkus.vertx.http.runtime.security.HttpSecurityUtils;
@@ -11,6 +10,7 @@ import io.vertx.ext.web.RoutingContext;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.enterprise.inject.Instance;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +24,12 @@ public class DynamoAuthenticationMechanism extends HeaderBasedAuthenticationMech
   /** The name of the header to be used for the authentication. */
   private final String headerName;
 
-  /** Object mapper for custom response. */
-  private final ObjectMapper objectMapper;
-
-  public DynamoAuthenticationMechanism(String headerName, ObjectMapper objectMapper) {
-    super(headerName, objectMapper);
+  public DynamoAuthenticationMechanism(
+      String headerName,
+      Instance<io.stargate.sgv2.api.common.security.challenge.ChallengeSender>
+          customChallengeSender) {
+    super(headerName, customChallengeSender);
     this.headerName = headerName;
-    this.objectMapper = objectMapper;
   }
 
   @Override

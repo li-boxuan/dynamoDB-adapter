@@ -11,6 +11,9 @@ stargate:
     token-resolver:
       type: principal
 
+  exception-mappers:
+    enabled: false
+
   metrics:
     global-tags:
       module: sgv2-dynamoapi

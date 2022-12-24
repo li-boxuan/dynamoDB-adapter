@@ -42,7 +42,7 @@ public class ItemProxy extends ProjectiveProxy {
   public GetItemResult getItem(GetItemRequest getItemRequest, StargateBridgeClient bridge) {
     final String tableName = getItemRequest.getTableName();
     Map<String, AttributeValue> keyMap = getItemRequest.getKey();
-    QueryBuilder.QueryBuilder__21 queryBuilder =
+    QueryBuilder.QueryBuilder__23 queryBuilder =
         new QueryBuilder().select().from(KEYSPACE_NAME, tableName);
     for (Map.Entry<String, AttributeValue> entry : keyMap.entrySet()) {
       queryBuilder =
@@ -130,7 +130,7 @@ public class ItemProxy extends ProjectiveProxy {
     }
 
     // Step 3: Write data
-    QueryBuilder.QueryBuilder__18 writeDataBuilder = null;
+    QueryBuilder.QueryBuilder__20 writeDataBuilder = null;
     for (Map.Entry<String, AttributeValue> attr : attributes.entrySet()) {
       final String key = attr.getKey();
       final AttributeValue value = attr.getValue();
@@ -179,7 +179,7 @@ public class ItemProxy extends ProjectiveProxy {
     }
 
     // Query first
-    QueryBuilder.QueryBuilder__21 queryBuilder =
+    QueryBuilder.QueryBuilder__23 queryBuilder =
         new QueryBuilder()
             .select()
             .from(KEYSPACE_NAME, tableName)

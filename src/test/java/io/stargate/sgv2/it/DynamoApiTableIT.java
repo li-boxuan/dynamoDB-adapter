@@ -47,6 +47,13 @@ public class DynamoApiTableIT extends DynamoITBase {
   }
 
   @Test
+  public void testDescribeTable() {
+    // describeTable API is not supported yet
+    Exception ex = assertThrows(Exception.class, () -> proxyClient.describeTable("foo"));
+    assertTrue(ex.getMessage().contains("ErrorId"));
+  }
+
+  @Test
   public void testListTables() {
     CreateTableRequest req1 =
         new CreateTableRequest()

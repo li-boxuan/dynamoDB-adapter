@@ -96,7 +96,7 @@ public class TableProxy extends Proxy {
     if (limit > 100) {
       throw new ValidationException("Limit in ListTables must be <= 100");
     }
-    QueryBuilder.QueryBuilder__21 queryBuilder =
+    QueryBuilder.QueryBuilder__23 queryBuilder =
         new QueryBuilder()
             .select()
             .column(TABLE_NAME)

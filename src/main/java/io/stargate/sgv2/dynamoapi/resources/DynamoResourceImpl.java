@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import javax.inject.Inject;
-import javax.validation.ValidationException;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
@@ -73,7 +72,7 @@ public class DynamoResourceImpl implements DynamoResourceApi {
         result = queryProxy.query(queryRequest, bridge);
         break;
       default:
-        throw new ValidationException("Invalid statement type: " + target);
+        throw new RuntimeException("Invalid statement type: " + target);
     }
     response = awsRequestMapper.writeValueAsBytes(result);
     return Response.status(Response.Status.OK).entity(response).build();
